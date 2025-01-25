@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://i86ivankenpi"]
+
+[ext_resource type="Script" path="res://island_generation.gd" id="1_yerfb"]
+[ext_resource type="Texture2D" uid="uid://dqh0o3dwmpdt6" path="res://island-mask-1.png" id="2_1avax"]
+
+[node name="IslandGeneration" type="Node2D"]
+script = ExtResource("1_yerfb")
+ImgTexture = ExtResource("2_1avax")
+randomizeParameters = true
+noise1_seed = 54151
+noise1_octaves = 3
+noise1_lacunarity = 3.541
+noise2_seed = 8456
+noise2_octaves = 2
+noise2_lacunarity = 2.548
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Minimap" type="TextureRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+stretch_mode = 5
+
+[node name="Generate" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Generate"
+
+[node name="SaveParam" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Save Parameters"
+
+[connection signal="pressed" from="VBoxContainer/Generate" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/SaveParam" to="." method="_on_save_param_pressed"]
